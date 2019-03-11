@@ -1,29 +1,28 @@
 <mat-card>
-  <form (submit)="onSavePost(postForm)" #postForm="ngForm" >
+  <form (submit)="onSavePost(postForm)" #postForm="ngForm">
     <mat-form-field>
       <input
-      matInput
-      type="text"
-      name="title"
-      [(ngModel)]='post.title'
-      required
-      minlength="3"
-      placeholder="Post Title"
-      #title='ngModel'>
+        type="text"
+        name="title"
+        [ngModel]="post?.title"
+        matInput
+        required
+        minlength="3"
+        placeholder="Post Title"
+        #title="ngModel"
+      />
     </mat-form-field>
     <mat-form-field>
-    <textarea
-    rows='4'
-    name='content'
-    matInput
-    [(ngModel)]='post.content'
-    required
-    placeholder="Post content"
-    #content='ngModel'></textarea>
-  </mat-form-field>
-  <button
-  mat-raised-button
-  color="accent"
-  type="submit">Save Post</button>
+      <textarea
+        rows="4"
+        name="content"
+        matInput
+        [ngModel]="post?.content"
+        required
+        placeholder="Post content"
+        #content="ngModel"
+      ></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit">Save Post</button>
   </form>
 </mat-card>
