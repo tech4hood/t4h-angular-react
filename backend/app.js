@@ -25,6 +25,5 @@ app.use((req, res, next)=> {
 });
 
 app.use("/api/posts", postsRoutes);
-// A123456
 
 module.exports = app;
