@@ -11,4 +11,5 @@
   <mat-action-row>
   </mat-action-row>
 </mat-accordion>
+<p *ngIf="(dataFromSelector$ | async)?.length > 0">Last title saved: {{ dataFromSelector$ | async }}</p>
 <p class="text-center mat-body-1" *ngIf="posts.length <= 0 && !isLoading">Not posts added yet!</p>

@@ -86,7 +86,7 @@ export class PostCreateComponent implements OnInit {
 
           this.store$.dispatch(
               new SavingData(
-                  `Data ${this.form.value.title}`,
+                  this.form.value.title,
                   "Saving Title"
               )
           );

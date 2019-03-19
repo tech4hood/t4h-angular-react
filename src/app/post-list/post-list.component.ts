@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Post } from '../post/post.model';
 import { PostService } from '../post/post.service';
-import { Subscription } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { DataState } from '../redux/reducer/storing.reducer';
+import { Subscription, Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { DataState, selectorData } from '../redux/reducer/storing.reducer';
 import { ResquestingData } from '../redux/actions/storing.action';
 
 @Component({
@@ -20,21 +20,24 @@ export class PostListComponent implements OnInit, OnDestroy {
     posts: Post[] = [];
     isLoading = false;
     postSubs: Subscription;
+  dataFromSelector$: Observable<any>;
 
   constructor(public postService: PostService,
   public store$: Store<DataState>) { }
 
   ngOnInit() {
-        this.isLoading = true;
-    this.postService.getPosts();
-    // this.store$.dispatch(new ResquestingData());
-        this.postSubs = this.postService
-            .getPostUpdated()
-          .subscribe((posts: Post[]) => {
-                this.isLoading = false;
-            this.posts = posts;
-            });
-    }
+
+    this.dataFromSelector$ = this.store$.pipe(select(selectorData));
+                 this.isLoading = true;
+                 this.postService.getPosts();
+                 // this.store$.dispatch(new ResquestingData());
+                 this.postSubs = this.postService
+                     .getPostUpdated()
+                     .subscribe((posts: Post[]) => {
+                         this.isLoading = false;
+                         this.posts = posts;
+                     });
+             }
 
     onDelete(PostId: string) {
         this.postService.deletePost(PostId);

@@ -1,4 +1,5 @@
 import { ActionType, DataActions } from '../actions/storing.action';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export interface DataState {
   data: string;
@@ -28,4 +29,10 @@ export function dataReducer(
            }
        }
 
+// Create the selector to get the new data
+export const selectDataFeature = createFeatureSelector<DataState>('Data');
 
+export const selectorData = createSelector(
+  selectDataFeature,
+  (state) => state.data
+);
