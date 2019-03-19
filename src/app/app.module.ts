@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PostCreateComponent } from './post/post-create/post-create.component';
@@ -11,30 +11,36 @@ import { MatInputModule, MatCardModule, MatFormFieldModule, MatButtonModule,
 import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostService } from './post/post.service';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { dataReducer } from './redux/reducer/storing.reducer';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PostCreateComponent,
-    HeaderComponent,
-    PostListComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatInputModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatProgressSpinnerModule,
-    MatExpansionModule,
-  ],
-  providers: [PostService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        PostCreateComponent,
+        HeaderComponent,
+        PostListComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatInputModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatProgressSpinnerModule,
+        MatExpansionModule,
+      MatProgressSpinnerModule,
+      StoreModule.forRoot({}),
+        StoreDevtoolsModule.instrument()
+    ],
+    providers: [PostService],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
+import { StoreModule } from "@ngrx/store";
 import { PostListComponent } from './post-list/post-list.component';
 import { PostCreateComponent } from './post/post-create/post-create.component';
+import { dataReducer } from './redux/reducer/storing.reducer';
 
 const routes: Routes = [
   {path: '', component: PostListComponent},
@@ -11,7 +12,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+    StoreModule.forFeature('Data', dataReducer)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
